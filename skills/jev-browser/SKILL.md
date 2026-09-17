@@ -102,6 +102,8 @@ If the CLI is missing, run the **jev-browser-setup** skill first.
 
 ## Typing (`fields`)
 
+Prefer fields over TEXT_MODEL for all agent runs.
+
 Pass every string to type in `fields`. Keys should resemble control labels (`search`, `q`, `email`, …).
 
 Unresolved fills with no text-model fallback return `NEED_USER` / `NEED_FIELDS` — add fields and retry.
