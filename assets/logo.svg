@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Jev Browser">
+  <defs>
+    <linearGradient id="bg" x1="64" y1="48" x2="448" y2="464" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B1220"/>
+      <stop offset="1" stop-color="#14213D"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="120" y1="140" x2="400" y2="400" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5EEAD4"/>
+      <stop offset="1" stop-color="#38BDF8"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <!-- browser frame -->
+  <rect x="96" y="118" width="320" height="276" rx="36" fill="#0F172A" stroke="url(#accent)" stroke-width="14"/>
+  <rect x="96" y="118" width="320" height="64" rx="36" fill="#1E293B"/>
+  <rect x="96" y="150" width="320" height="32" fill="#1E293B"/>
+  <circle cx="140" cy="150" r="10" fill="#F87171"/>
+  <circle cx="172" cy="150" r="10" fill="#FBBF24"/>
+  <circle cx="204" cy="150" r="10" fill="#34D399"/>
+  <!-- indexed control dots -->
+  <circle cx="176" cy="248" r="18" fill="url(#accent)"/>
+  <circle cx="256" cy="248" r="18" fill="#334155"/>
+  <circle cx="336" cy="248" r="18" fill="#334155"/>
+  <rect x="158" y="300" width="196" height="36" rx="12" fill="#334155"/>
+  <rect x="158" y="300" width="118" height="36" rx="12" fill="url(#accent)" opacity="0.95"/>
+  <!-- crosshair / choose mark -->
+  <circle cx="336" cy="318" r="28" fill="none" stroke="#5EEAD4" stroke-width="8"/>
+  <circle cx="336" cy="318" r="8" fill="#5EEAD4"/>
+</svg>

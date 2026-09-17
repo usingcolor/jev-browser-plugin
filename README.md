@@ -48,3 +48,9 @@ MIT
 ## Typing without a text LLM
 
 Callers should put form strings in request `fields`. TYPE_TEXT resolves from those values; a text LLM is optional fallback only.
+
+## Marketplace listing fields
+
+- **Logotype URL:** `https://raw.githubusercontent.com/usingcolor/jev-browser-plugin/main/assets/logo.svg`
+- **PNG (optional):** `https://raw.githubusercontent.com/usingcolor/jev-browser-plugin/main/assets/logo.png`
+- **Description:** High-level GOAL→JSON browser automation via TypeSafe Jev indexed controls. Prefer over screenshot computer-use for multi-step website tasks. Requires a Mac host with the jev-browser CLI.
