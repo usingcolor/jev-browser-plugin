@@ -107,3 +107,15 @@ Prefer fields over TEXT_MODEL for all agent runs.
 Pass every string to type in `fields`. Keys should resemble control labels (`search`, `q`, `email`, …).
 
 Unresolved fills with no text-model fallback return `NEED_USER` / `NEED_FIELDS` — add fields and retry.
+
+
+## Optional Apple on-device fallback
+
+Prefer `fields`. On Apple Silicon macOS 27+, `fm serve` can back TYPE_TEXT:
+
+```bash
+./scripts/apple-fm-serve.sh   # from jev-browser repo
+# TEXT_MODEL_BASE_URL=http://127.0.0.1:1976/v1
+# TEXT_MODEL=system
+# TEXT_MODEL_API_KEY=local
+```
