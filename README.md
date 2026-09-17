@@ -1,8 +1,8 @@
 # Jev Browser (agent plugin)
 
-Marketplace-style plugin that teaches agents to automate websites with **high-level goals** via the Mac `jev-browser` CLI (TypeSafe Jev indexed controls), instead of screenshot computer-use.
+Cursor / Agent Plugins package that teaches agents to automate websites with **high-level goals** via the Mac `jev-browser` CLI (TypeSafe Jev indexed controls), instead of screenshot computer-use.
 
-## What this plugin contains
+## Contents
 
 | Skill | Purpose |
 |-------|---------|
@@ -19,9 +19,26 @@ Importers need a registered Mac with [jev-browser](https://github.com/usingcolor
 
 ## Install (developers)
 
-1. Install the Mac CLI (see `skills/jev-browser-setup/SKILL.md`).
-2. Install this plugin / copy the skills into your agent skill library.
-3. Point agents at a machine that has `~/.local/bin/jev-browser`.
+### Local test (Cursor)
+
+```bash
+mkdir -p ~/.cursor/plugins/local/jev-browser
+rsync -a --delete \
+  --exclude .git \
+  ~/Codes/jev-browser-plugin/ \
+  ~/.cursor/plugins/local/jev-browser/
+# then: Developer: Reload Window
+```
+
+### Marketplace
+
+1. Make this repository **public**.
+2. Submit the repo URL at [cursor.com/marketplace/publish](https://cursor.com/marketplace/publish).
+3. Cursor reviews manually before listing.
+
+## Related
+
+- CLI: https://github.com/usingcolor/jev-browser
 
 ## License
 

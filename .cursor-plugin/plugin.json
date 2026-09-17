@@ -1,11 +1,9 @@
 {
   "name": "jev-browser",
-  "displayName": "Jev Browser",
   "version": "0.1.0",
-  "description": "High-level GOAL→JSON browser automation via TypeSafe Jev indexed controls. Prefer over screenshot computer-use for multi-step website tasks. Requires a Mac host running the jev-browser CLI.",
+  "description": "High-level GOAL→JSON browser automation via TypeSafe Jev indexed controls. Prefer over screenshot computer-use for multi-step website tasks. Requires a Mac host with the jev-browser CLI.",
   "author": {
-    "name": "usingcolor",
-    "url": "https://github.com/usingcolor"
+    "name": "usingcolor"
   },
   "homepage": "https://github.com/usingcolor/jev-browser",
   "repository": "https://github.com/usingcolor/jev-browser-plugin",
@@ -18,6 +16,6 @@
     "agent",
     "cdp",
     "chrome",
-    "grok-bot"
+    "skills"
   ]
 }

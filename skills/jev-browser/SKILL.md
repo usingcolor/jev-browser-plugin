@@ -14,32 +14,45 @@ Agents do **not** drive clicks or screenshots. Pass a high-level goal; the Mac C
 ## Architecture
 
 1. Agent issues **goal** (+ optional `start_url`, `fields`, `done_when`, `max_steps`).
-2. `jev-browser` owns the browser session (dedicated CDP Chrome by default).
+2. `jev-browser` owns the browser session (dedicated CDP Chrome on port `9333` by default).
 3. Each step: DOM snapshot → indexed controls → **TypeSafe Jev** picks operation + target → execute.
-4. A text model is used **only** for `TYPE_TEXT`.
+4. A text model is used **only** for `TYPE_TEXT` fills (`TEXT_MODEL_API_KEY`).
 5. Parse **stdout JSON**; always read `status`, not just the process exit code.
 
 Prefer this over screenshot / computer-use for standard HTML/ARIA multi-step flows.
 
 ## Invoke
 
+Shell on a **registered Mac** that has `~/.local/bin/jev-browser` (or `~/Codes/jev-browser/bin/jev-browser`).
+
+JSON file:
+
 ```bash
 export PATH="$HOME/.local/bin:$PATH"
-
-echo '{
+cat > /tmp/jev-req.json <<'JSON'
+{
   "goal": "<natural language goal>",
   "start_url": "https://...",
   "max_steps": 40,
   "fields": {},
   "done_when": "optional success criterion"
-}' | jev-browser
+}
+JSON
+jev-browser --json-file /tmp/jev-req.json
 ```
 
-Flags: `--goal`, `--start-url`, `--max-steps`, `--fields`, `--done-when`, `--stream`, `--dry-run`, `--doctor`.
+Flags:
 
-Shell on a **registered Mac** that has the CLI. An always-on Mini is ideal; a laptop works too.
+```bash
+jev-browser --goal '...' --start-url 'https://...' --max-steps 40
+jev-browser --stream --goal '...' --start-url 'https://...'
+jev-browser --dry-run --goal '...' --start-url 'https://example.com'
+jev-browser --doctor
+```
 
 ## Output
+
+Final stdout object (stream mode also emits per-step lines):
 
 ```json
 {
@@ -50,22 +63,27 @@ Shell on a **registered Mac** that has the CLI. An always-on Mini is ideal; a la
 }
 ```
 
-- `DONE` — success
-- `NEED_USER` — login / captcha / 2FA; stop and ask the user
-- `BLOCKED` — cannot proceed safely
-- `ERROR` — harness/browser failure
+| Status | Meaning |
+|--------|---------|
+| `DONE` | Goal completed |
+| `NEED_USER` | Login, captcha, permissions, or other human step |
+| `BLOCKED` | Agent stopped / no progress |
+| `ERROR` | Harness, env, or browser failure |
+
+Exit codes: `0` for `DONE`, `2` for `NEED_USER`/`BLOCKED`, non-zero for `ERROR`. Still parse JSON.
 
 ## Env (never print values)
+
+Default file: `~/.config/jev-browser/.env` (mode `600`). Override with `--env-file`.
 
 | Var | Required | Notes |
 |-----|----------|-------|
 | `TYPESAFE_API_KEY` | yes | TypeSafe Jev |
-| `TEXT_MODEL_API_KEY` | for typing | OpenAI-compatible |
+| `TEXT_MODEL_API_KEY` | for typing | OpenAI-compatible key |
 | `TEXT_MODEL_BASE_URL` | recommended | e.g. `https://api.openai.com/v1` |
 | `TEXT_MODEL` | recommended | e.g. `gpt-5.6-luna` |
 | `TEXT_MODEL_REASONING` | optional | `none` for OpenAI |
-
-Loaded from `~/.config/jev-browser/.env` (mode `600`).
+| `JEV_BROWSER_CDP_PORT` | optional | default `9333` |
 
 ## Goal tips
 
@@ -75,7 +93,7 @@ Loaded from `~/.config/jev-browser/.env` (mode `600`).
 
 ## Limits
 
-- Login walls need a signed-in Chrome profile (or user help).
+- Login walls need a signed-in automation Chrome profile (or user help → `NEED_USER`).
 - Canvas / non-DOM UIs may still need computer-use.
 - Keep interactive Chrome light on weaker always-on hosts while automation runs.
 
