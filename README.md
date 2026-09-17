@@ -43,3 +43,8 @@ rsync -a --delete \
 ## License
 
 MIT
+
+
+## Typing without a text LLM
+
+Callers should put form strings in request `fields`. TYPE_TEXT resolves from those values; a text LLM is optional fallback only.

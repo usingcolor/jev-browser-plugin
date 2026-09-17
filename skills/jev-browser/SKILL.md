@@ -79,9 +79,9 @@ Default file: `~/.config/jev-browser/.env` (mode `600`). Override with `--env-fi
 | Var | Required | Notes |
 |-----|----------|-------|
 | `TYPESAFE_API_KEY` | yes | TypeSafe Jev |
-| `TEXT_MODEL_API_KEY` | for typing | OpenAI-compatible key |
-| `TEXT_MODEL_BASE_URL` | recommended | e.g. `https://api.openai.com/v1` |
-| `TEXT_MODEL` | recommended | e.g. `gpt-5.6-luna` |
+| `TEXT_MODEL_API_KEY` | optional | OpenAI-compatible key |
+| `TEXT_MODEL_BASE_URL` | optional | e.g. `https://api.openai.com/v1` |
+| `TEXT_MODEL` | optional | e.g. `gpt-5.6-luna` |
 | `TEXT_MODEL_REASONING` | optional | `none` for OpenAI |
 | `JEV_BROWSER_CDP_PORT` | optional | default `9333` |
 
@@ -98,3 +98,10 @@ Default file: `~/.config/jev-browser/.env` (mode `600`). Override with `--env-fi
 - Keep interactive Chrome light on weaker always-on hosts while automation runs.
 
 If the CLI is missing, run the **jev-browser-setup** skill first.
+
+
+## Typing (`fields`)
+
+Pass every string to type in `fields`. Keys should resemble control labels (`search`, `q`, `email`, …).
+
+Unresolved fills with no text-model fallback return `NEED_USER` / `NEED_FIELDS` — add fields and retry.

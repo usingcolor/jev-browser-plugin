@@ -26,7 +26,7 @@ Install the Mac worker that the **jev-browser** skill calls.
 4. `cd ~/Codes/jev-ultrafast && uv sync` (if that package is managed with uv)
 5. `cd ~/Codes/jev-browser && uv sync`
 6. Symlink: `ln -sfn ~/Codes/jev-browser/bin/jev-browser ~/.local/bin/jev-browser`
-7. Create `~/.config/jev-browser/.env` (chmod 600) with at least:
+7. Create `~/.config/jev-browser/.env` (chmod 600) with TypeSafe key. Text-model keys are optional if callers always pass `fields`:
    - `TYPESAFE_API_KEY=...`
    - `TEXT_MODEL_API_KEY=...`
    - `TEXT_MODEL_BASE_URL=https://api.openai.com/v1`
